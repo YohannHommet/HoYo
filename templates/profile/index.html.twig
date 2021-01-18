@@ -1,0 +1,22 @@
+{% extends'base/base.html.twig' %}
+{% block title'Profile' %}
+
+{% block body %}
+
+    <h1>{{ app.user.firstname }} {{ app.user.lastname }} Profile</h1>
+
+    <h3>Here you can manage your account informations</h3>
+
+
+    <div>
+        <a href="{{ path('app_password_reset')}}">Change your password</a>
+    </div>
+    <div>
+        <a href="">Check your orders</a>
+    </div>
+    <div>
+        <a href="">Manage your shipping informations</a>
+    </div>
+
+
+{% endblock %}
