@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Portfolio de Yohann Hommet, développeur backend PHP / Symfony Junior.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Portfolio de Yohann Hommet, développeur backend PHP / Symfony Junior.">
+    <title>{% block title 'Portfolio de Yohann' %}</title>
 
-        {% block title %}<title>Portfolio Personnel</title>{% endblock %}
+    {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+              crossorigin="anonymous">
 
-        {% block stylesheets %}
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        {% endblock %}
-
-    </head>
-    <body>
-
-        <main role="main" class="container-xl">
-            {% block body %}
-            {% endblock %}
-        </main>
-
-    {% block javascripts %}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     {% endblock %}
 
-    </body>
+</head>
+<body>
+
+{{ include('_partials.html.twig/_navbar.html.twig') }}
+
+{{ include('_partials.html.twig/_flash_messages.html.twig') }}
+
+<main role="main" class="container-xl">
+    {% block body %}
+    {% endblock %}
+</main>
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+{% endblock %}
+
+</body>
 </html>
