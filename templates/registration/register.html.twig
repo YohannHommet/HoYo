@@ -1,0 +1,28 @@
+{% extends 'base/base.html.twig' %}
+{% block title'Register' %}
+
+{% block body %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.firstname) }}
+    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.password) }}
+
+    {{ form_row(registrationForm.agreeTerms) }}
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('register') }}">
+    {% dump(csrf_token('register')) %}
+    <div class="d-grid">
+        <button type="submit" class="btn btn-outline-info">Register</button>
+    </div>
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

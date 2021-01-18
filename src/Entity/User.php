@@ -56,17 +56,20 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @Assert\Length(min=6, minMessage="6 characters minimum please.", max=4096, maxMessage="Your password is too long")
-     * @Assert\NotCompromisedPassword(message="Invalid Password.")
      */
     private string $password;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $isVerified = false;
 
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getFirstname(): ?string
     {
@@ -156,6 +159,7 @@ class User implements UserInterface
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
+
     /**
      * @see UserInterface
      */
@@ -163,6 +167,20 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->password = '';
+    }
+
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
     }
 
 }

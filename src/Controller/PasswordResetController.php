@@ -29,6 +29,12 @@ class PasswordResetController extends AbstractController
     {
         /** @var \App\Entity\User|$user */
         $user = $this->getUser();
+
+        if (!$user->isVerified()) {
+            $this->addFlash('danger', 'Please verify your account first');
+            return $this->redirectToRoute('app_profile');
+        }
+
         $form = $this->createForm(PasswordResetFormType::class, $user);
         $form->handleRequest($request);
 

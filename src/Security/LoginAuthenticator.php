@@ -2,10 +2,12 @@
 
 namespace App\Security;
 
+
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -20,9 +22,12 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+
 class LoginAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
+
     use TargetPathTrait;
+
 
     public const LOGIN_ROUTE = 'app_login';
 
@@ -30,14 +35,18 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
     private UrlGeneratorInterface $urlGenerator;
     private CsrfTokenManagerInterface $csrfTokenManager;
     private UserPasswordEncoderInterface $passwordEncoder;
+    private FlashBagInterface $flashBag;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
+
+    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder, FlashBagInterface $flashBag)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->flashBag = $flashBag;
     }
+
 
     public function supports(Request $request)
     {
@@ -71,7 +80,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Invalid email address');
         }
 
         return $user;
@@ -82,8 +91,12 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
+     *
+     * @param $credentials
+     * @return string|null
      */
     public function getPassword($credentials): ?string
     {
@@ -93,9 +106,11 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+
             return new RedirectResponse($targetPath);
         }
 
+        $this->flashBag->add('success', 'Welcome Traveller !');
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 
