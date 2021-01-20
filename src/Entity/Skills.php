@@ -4,7 +4,6 @@
 namespace App\Entity;
 
 
-use App\Entity\Traits\Timestampable;
 use App\Repository\SkillsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,9 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Skills
 {
-
-    use Timestampable;
-
 
     /**
      * @ORM\Id
@@ -36,7 +32,6 @@ class Skills
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\File()
      */
     private ?string $image;
 

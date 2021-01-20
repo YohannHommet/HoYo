@@ -4,7 +4,6 @@
 namespace App\Entity;
 
 
-use App\Entity\Traits\Timestampable;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,12 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Category
 {
-
-    use Timestampable;
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -43,6 +40,12 @@ class Category
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+    }
+
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 
 

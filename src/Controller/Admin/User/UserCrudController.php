@@ -30,7 +30,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastname', 'Lastname'),
             EmailField::new('email', 'Email'),
             ArrayField::new('roles'),
-            BooleanField::new('isVerified'),
+            BooleanField::new('isVerified', 'Verified'),
             TextField::new('password', 'Password'),
         ];
     }

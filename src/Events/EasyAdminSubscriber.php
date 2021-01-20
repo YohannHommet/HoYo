@@ -35,10 +35,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     private function hashPassword($event): void
     {
         /** @var \App\Entity\User|$user */
-        $user = $event->getEntityInstance();
-        if ($user instanceof User) {
+        $entity = $event->getEntityInstance();
+        if ($entity instanceof User) {
             $user->setPassword($this->encoder->encodePassword($user, $user->getPassword()));
         }
+
     }
 
 
