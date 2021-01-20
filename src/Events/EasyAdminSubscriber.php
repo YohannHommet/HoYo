@@ -4,6 +4,7 @@
 namespace App\Events;
 
 
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -13,9 +14,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
 
-    /**
-     * @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
-     */
     private UserPasswordEncoderInterface $encoder;
 
 
@@ -34,17 +32,19 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     }
 
 
-    public function setPassword(BeforeEntityPersistedEvent $event): void
-    {
-        $this->hashPassword($event);
-    }
-
-
     private function hashPassword($event): void
     {
         /** @var \App\Entity\User|$user */
         $user = $event->getEntityInstance();
-        $user->setPassword($this->encoder->encodePassword($user, $user->getPassword()));
+        if ($user instanceof User) {
+            $user->setPassword($this->encoder->encodePassword($user, $user->getPassword()));
+        }
+    }
+
+
+    public function setPassword(BeforeEntityPersistedEvent $event): void
+    {
+        $this->hashPassword($event);
     }
 
 
