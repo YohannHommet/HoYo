@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 
 
@@ -32,6 +31,11 @@ class Category
     private ?string $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private ?string $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category")
      */
     private $articles;
@@ -41,8 +45,6 @@ class Category
     {
         $this->articles = new ArrayCollection();
     }
-
-
     public function __toString(): string
     {
         return $this->getName();
@@ -53,7 +55,6 @@ class Category
     {
         return $this->id;
     }
-
 
     public function getName(): ?string
     {
@@ -69,6 +70,18 @@ class Category
     }
 
 
+    public function setSlug(?string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+
     /**
      * @return Collection|Article[]
      */
@@ -76,7 +89,6 @@ class Category
     {
         return $this->articles;
     }
-
 
     public function addArticle(Article $article): self
     {
@@ -87,7 +99,6 @@ class Category
 
         return $this;
     }
-
 
     public function removeArticle(Article $article): self
     {

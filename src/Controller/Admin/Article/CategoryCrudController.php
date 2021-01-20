@@ -7,6 +7,7 @@ namespace App\Controller\Admin\Article;
 use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 
@@ -24,6 +25,7 @@ class CategoryCrudController extends AbstractCrudController
         return [
             IdField::new('id')->setFormTypeOptions(['disabled' => true])->setRequired(false),
             TextField::new('name'),
+            SlugField::new('slug')->setTargetFieldName('name')
         ];
     }
 

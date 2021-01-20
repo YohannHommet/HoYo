@@ -28,23 +28,17 @@ class Article
     private ?int $id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?User $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private ?Category $category;
-
-    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(min=3, minMessage="Title should be at least 3 characters")
      */
     private ?string $title;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private ?string $slug;
 
     /**
      * @ORM\Column(type="text")
@@ -58,10 +52,81 @@ class Article
      */
     private ?string $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?User $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?Category $category;
+
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+
+    /**
+     * @param string|null $slug
+     */
+    public function setSlug(?string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
 
@@ -92,46 +157,5 @@ class Article
         return $this;
     }
 
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
 }
