@@ -25,7 +25,11 @@ class SkillsCrudController extends AbstractCrudController
         return [
             IdField::new('id')->setFormTypeOptions(['disabled' => true]),
             TextField::new('name'),
-            ImageField::new('image')->setBasePath('uploads')->setUploadDir('public/uploads/')->setUploadedFileNamePattern('[randomhash].[extension]'),
+            ImageField::new('image')
+                ->setBasePath('uploads')
+                ->setUploadDir('public/uploads/')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setRequired(false),
         ];
     }
 

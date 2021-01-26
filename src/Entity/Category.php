@@ -32,11 +32,12 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private ?string $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category", orphanRemoval=false)
      */
     private $articles;
 
@@ -96,7 +97,6 @@ class Category
             $this->articles[] = $article;
             $article->setCategory($this);
         }
-
         return $this;
     }
 
@@ -108,7 +108,6 @@ class Category
                 $article->setCategory(null);
             }
         }
-
         return $this;
     }
 

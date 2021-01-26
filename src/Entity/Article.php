@@ -49,6 +49,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private ?string $image;
 
@@ -102,12 +103,10 @@ class Article
         return $this->slug;
     }
 
-
     public function getDescription(): ?string
     {
         return $this->description;
     }
-
 
     public function setDescription(string $description): self
     {
@@ -121,7 +120,6 @@ class Article
         return $this->image;
     }
 
-
     public function setImage(string $image): self
     {
         $this->image = $image;
@@ -129,12 +127,10 @@ class Article
         return $this;
     }
 
-
     public function getUser(): ?User
     {
         return $this->user;
     }
-
 
     public function setUser(?User $user): self
     {
@@ -143,12 +139,10 @@ class Article
         return $this;
     }
 
-
     public function getCategory(): ?Category
     {
         return $this->category;
     }
-
 
     public function setCategory(?Category $category): self
     {
