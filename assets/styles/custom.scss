@@ -11,24 +11,24 @@ $teal: #20c997;
 $cyan: #0dcaf0;
 $cyan2: #3A9FCB;
 
-$white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
 
-$primary: $blue !default;
-$secondary: $gray-500 !default;
-$success: $green !default;
-$info: $cyan !default;
-$warning: $yellow !default;
-$danger: $red !default;
+$primary: $indigo;
+$secondary: $gray-500;
+$success: $teal;
+$info: $cyan;
+$warning: $yellow;
+$danger: $pink;
 $light: #f8f9fa;
 $dark: #0F1343;
 
@@ -36,3 +36,12 @@ $dark: #0F1343;
   width: 1500px;
 }
 
+nav#navbar {
+  box-shadow: 0 10px 10px -15px rgba(0,0,0,0.5);
+}
+
+section#home {
+  height: 500px;
+  background: url("../../public/assets/images/purple-web-development.jpg");
+  background-size: cover;
+}

@@ -31,6 +31,7 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/register", name="app_register")
+     *
      * @param \Symfony\Component\HttpFoundation\Request                             $request
      * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder
      * @param \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface            $tokenManager
