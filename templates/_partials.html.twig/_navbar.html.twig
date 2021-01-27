@@ -1,40 +1,54 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid">
+<div class="container-lg">
+    <nav id="navbar" class="navbar navbar-expand-md navbar-light rounded-1 mt-2 shadow-sm">
+        <div class="container-fluid mx-xs-0 mx-2">
 
-        <a class="navbar-brand" href="{{ path('app_home') }}">HoYo's</a>
+            <a class="navbar-brand" href="/">
+                <span class="fs-4 text-info">&middot;</span>
+                <span class="">Y</span>
+                <span class="fs-4 text-secondary">&middot;</span>
+                <span class="">H</span>
+                <span class="fs-4 text-danger">&middot;</span>
+            </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_login') }}">login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_register') }}">Register</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Profile
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ path('app_profile') }}">Account Settings</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_password_reset') }}">Reset Password</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto mb-xs-2 mb-lg-0">
+                    {% if app.user %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ path('app_profile') }}">Account Settings</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_password_reset') }}">Reset Password</a>
+                                </li>
+                                <li><a class="dropdown-item" href="">Another Link</a></li>
+                                <li>
+                                    <hr class="dropdown-divider w-75">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                            </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-danger px-3" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_register') }}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-info px-3" href="{{ path('app_login') }}">login</a>
+                        </li>
+                    {% endif %}
+                </ul>
 
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
