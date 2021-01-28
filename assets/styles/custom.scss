@@ -1,15 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 $blue: #0d6efd;
-$indigo: #6610f2;
-$purple: #6f42c1;
-$pink: #F85D9B;
+$indigo: #4005a9;
+$purple: #835acf;
+$pink: #ff65b1;
 $red: #dc3545;
 $orange: #fd7e14;
 $yellow: #ffc107;
 $green: #198754;
-$teal: #20c997;
+$teal: #35d283;
 $cyan: #0dcaf0;
-$cyan2: #3A9FCB;
+$cyan2: #3ca0c8;
 
 $white: #fff;
 $gray-100: #f8f9fa;
@@ -23,7 +24,7 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
-$primary: $indigo;
+$primary: $purple;
 $secondary: $gray-500;
 $success: $teal;
 $info: $cyan;
@@ -31,6 +32,15 @@ $warning: $yellow;
 $danger: $pink;
 $light: #f8f9fa;
 $dark: #0F1343;
+$font-size-base: 1.1rem;
+
+$link-decoration: $danger;
+
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 2rem;
+  letter-spacing: 0.1rem;
+}
 
 .container-xl {
   width: 1500px;
@@ -40,8 +50,75 @@ nav#navbar {
   box-shadow: 0 10px 10px -15px rgba(0,0,0,0.5);
 }
 
+nav#navbar ul a:hover {
+
+}
+
+nav#navbar li > a.nav-link:before{
+  content: '';
+  display: block;
+  height: 1.5px;
+  background: $primary;
+  transform: scaleX(0);
+  transition: transform .3s;
+}
+
+nav#navbar li > a.nav-link:hover::before {
+  transform: scaleX(0.90);
+  transition: transform .3s;
+}
+
 section#home {
-  height: 500px;
-  background: url("../../public/assets/images/purple-web-development.jpg");
+  background-image: url("/assets/images/pawel-czerwinski-unsplash-lg.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+  filter: opacity(0.8);
+
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2);
+
+  text-shadow: -2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+section#formation {
+  #oclock {
+    position: relative;
+    filter: drop-shadow(0 0 0.4rem $danger);
+  }
+}
+
+footer ul#social {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+
+    overflow: hidden;
+    margin: 15px;
+    color: $info;
+    border: 1px solid rgba(60, 160, 200, 1);
+    transition: 0.3s;
+    transform: rotate(45deg);
+  }
+}
+
+footer ul#social li a i.fab.fa-linkedin-in {
+    transform: rotate(-45deg);
+}
+footer ul#social li a i.fab.fa-github {
+  transform: rotate(-45deg);
+}
+footer ul#social li a i.fab.fa-twitter {
+  transform: rotate(-45deg);
+}
+footer ul#social li a i.far.fa-envelope {
+  transform: rotate(-45deg);
 }

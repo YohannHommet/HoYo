@@ -1,10 +1,10 @@
 {% extends 'base/base.html.twig' %}
+{% block title 'H.Y | Login' %}
 
-{% block title 'Log in' %}
 
 {% block body %}
 
-    <form method="post">
+    <div class="container">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -14,29 +14,55 @@
                 You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
+    </div>
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    {% include '_partials.html.twig/_divider.html.twig' with {
+        'color': 'danger',
+        'margin': '100',
+        'text': 'Sign In !'
+    } %}
 
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+    <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10 5 mx-auto">
 
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
+            <Div class="card shadow p-3 rounded border-danger my-md-5 my-sm-3">
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}">
+                <form method="post">
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+                    <div class="form-group mb-4">
+                        <label for="inputEmail"><span class="text-info me-2 fs-4">&middot;</span>Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                        <div class="form-error">
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword"><span class="text-info me-2 fs-4">&middot;</span>Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                    </div>
+
+                    <div class="checkbox mt-2 mb-5 ms-2">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}">
+
+                    <div class="d-grid mt-5">
+                        <button class="btn btn btn-info" type="submit">
+                            Sign in !
+                        </button>
+                    </div>
+
+                </form>
+
+            </Div>
+
         </div>
+    </div>
 
-        <div class="d-grid">
-            <button class="btn btn btn-primary" type="submit">
-                Sign in
-            </button>
-        </div>
-    </form>
 
 {% endblock %}

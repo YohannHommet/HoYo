@@ -1,23 +1,144 @@
 {% extends 'base/base.html.twig' %}
-{% block title 'Yohann Hommet' %}
+{% block title 'H.Y | Home' %}
 
 {% block body %}
 
-    <section id="home" class="container-fluid">
+    {# SECTION PRESENTATION #}
+    <section role="banner" id="home" class="text-white mt-5" style="height: 500px">
 
-        <div class="row">
-            <div class="col-8">
-                <h1 class="text-white ms-auto">Développeur Backend Symfony</h1>
-                <h3 class="text-white">Hommet Yohann</h3>
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 ms-auto text-md-end text-sm-center py-5 my-lg-5 my-md-3 my-sm-1">
+                    <h1 class="font-weight-bolder">
+                        Développeur Backend PHP / Symfony
+                    </h1>
+                    <h3 class="h2 text-light">Yohann HOMMET</h3>
+                    <br>
+                    <p class="card-text fs-5 my-lg-5 my-md-3 my-sm-1">
+                        Bienvenue à tous sur mon Portfolio ! <br>
+                        J'ai monté ce site pour le plaisir, mais aussi pour montrer mes capacités <br>
+                        en développement web (côté Backend notamment).
+                    </p>
+                </div>
             </div>
         </div>
-
-
-
-
 
     </section>
 
 
+    <section class="container-xl mt-5">
+        <div class="row mt-5">
+
+            <div class="col-lg-8">
+                <div class="py-5">
+                    <p class="">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Autant rentrer dans le vif du sujet et présenter mes <b>compétences</b>...
+                        {# TODO : Permettre de sélectionner les categories pour afficher les skills correspondants avec ajax pour éviter d'utiliser un bouton pour valider #}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                {# TODO : Boucle pour afficher les skills #}
+            </div>
+
+        </div>
+    </section>
+
+
+    {% include '_partials.html.twig/_divider.html.twig' with {
+        'color': 'info',
+        'margin': '150',
+        'text': 'Qui suis-je...'
+    } %}
+
+
+    <section role="doc-introduction" class="container-xl" style="margin-top: 150px;">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div class="py-5 text-justify">
+                    <p class="">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Je suis un junior dans le monde du développement web, et un senior (en quelques sortes) dans l'utilisation de l'outil informatique. Cuisinier de métier je me suis tourné vers la programmation durant l'été 2019 pendant que ma fiancé faisait sa propre formation au CEFI d'Angers.
+                    </p>
+                    <p class="">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        J'ai consacrer mon temps libre à l'apprentissage du HTML et du CSS, et après plusieurs projets et tutos en tout genres, je me suis orienté vers le Javascript.
+                        Après quelques temps sur JS, je me suis penché sur le PHP puis je me suis rapidement tourner vers Symfony. Comme beaucoup à ce moment là, ce fût une sorte de révélation... J'ai tout de suite aimé la simplicité "apparente" de cette librairie, mais surtout sa structure très organisée qui laisse place malgré tout à une grande flexibilité. C'est à partir de se moment là que j'ai décidé d'en faire ma compétence principale pour le futur. Je suis alors retourné travailler mon PHP plusieurs semaines, afin de reprendre Symfony dans de bonnes conditions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                <img src="https://picsum.photos/350/350" height="350" width="350" class="img img-fluid rounded-circle shadow mx-auto" alt="photo personnelle">
+            </div>
+
+        </div>
+    </section>
+
+
+    {% include '_partials.html.twig/_divider.html.twig' with {
+        'color': 'info',
+        'margin': '150',
+        'text': 'Ma Formation'
+    } %}
+
+
+    <section id="formation" class="container-xl mt-5">
+        <div class="row mt-5">
+
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                <img src="assets/images/oclock.png" id="oclock" height="350" width="350" class="img img-fluid rounded-circle" alt="école oclock">
+            </div>
+
+            <div class="col-lg-8">
+                <div class="py-5 text-justify">
+                    <p class="">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Je me suis orienté vers l'école <b>O'Clock</b>... J'ai pu suivre pendant près de 6 mois, un enseignement aux petits oignons, correspondant parfaitement à mes attentes et à mes envies.
+                        J'ai pu re découvrir le HTML, le CSS, puis le Javascript, le PHP, et Wordpress (entres autres). A l'issu de ce que l'on appelle <b>"le socle"</b>, j'ai pu enfin me lancer dans la spécialisation Symfony pendant 4 semaines très intenses, avant d'attaquer l'apothéose...
+                    </p>
+                    <p class="">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                       <b>L'Apothéose</b> c'est le dernier mois de la formation où on se regroupe par équipes de 3 à 5 pour développer un projet complexe de A à Z. On se mets dans les conditions d'une véritable entreprise, on se réparti les rôles, on établi un plan d'attaque et on développe !
+                    </p>
+                    <div class="d-grid gap-4 d-md-flex justify-content-md-end mt-5">
+                        <button type="button" class="btn btn-outline-info ms-md-auto rounded-pill px-3 shadow"><a href="https://oclock.io">L'école</a></button>
+                        <button type="button" class="btn btn-outline-danger me-md-5 rounded-pill px-3 shadow"><a href="">Le Projet d'Apothéose</a></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    {% include '_partials.html.twig/_divider.html.twig' with {
+        'color': 'info',
+        'margin': '150',
+        'text': 'Mes Projets'
+    } %}
+
+
+    <section class="container-xl">
+        <div class="row mt-5">
+
+            <div class="col-lg-3 col-md-4">
+                <div class="card bg-info"></div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="card bg-info"></div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="card bg-info"></div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="card bg-info"></div>
+            </div>
+
+        </div>
+    </section>
 
 {% endblock %}
