@@ -33,23 +33,25 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=2, minMessage="2 characters minimum please !", max=255, maxMessage="Too much characters.")
+     * @Assert\Length(min=3, minMessage="Should be at least 3 characters min.", max=255, maxMessage="Too much
+     *                       characters.")
      */
-    private ?string $firstname;
+    private string $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=2, minMessage="2 characters minimum please !", max=255, maxMessage="Too much characters.")
+     * @Assert\Length(min=3, minMessage="Should be at least 3 characters min.", max=255, maxMessage="Too much
+     *                       characters.")
      */
-    private ?string $lastname;
+    private string $lastname;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email(message="Please enter a valid email address.")
      */
-    private ?string $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="json")
@@ -59,6 +61,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private string $password;
 
@@ -77,8 +80,6 @@ class User implements UserInterface
     {
         $this->articles = new ArrayCollection();
     }
-
-
     public function __toString(): string
     {
         return $this->getEmail();
@@ -91,10 +92,11 @@ class User implements UserInterface
     }
 
 
-    public function getFirstname(): ?string
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
+
 
     public function setFirstname(string $firstname): self
     {
@@ -103,10 +105,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLastname(): ?string
+
+    public function getLastname(): string
     {
         return $this->lastname;
     }
+
 
     public function setLastname(string $lastname): self
     {
@@ -115,10 +119,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getEmail(): ?string
+
+    public function getEmail(): string
     {
         return $this->email;
     }
+
 
     public function setEmail(string $email): self
     {
@@ -203,7 +209,6 @@ class User implements UserInterface
         return $this;
     }
 
-
     /**
      * @return Collection|Article[]
      */
@@ -211,7 +216,6 @@ class User implements UserInterface
     {
         return $this->articles;
     }
-
 
     public function addArticle(Article $article): self
     {
@@ -222,7 +226,6 @@ class User implements UserInterface
 
         return $this;
     }
-
 
     public function removeArticle(Article $article): self
     {

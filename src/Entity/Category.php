@@ -26,15 +26,15 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=3, minMessage="Name should be at least 3 characters lenrgth")
+     * @Assert\Length(min=3, minMessage="Need at least 3 characters lenrgth")
      */
-    private ?string $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private ?string $slug;
+    private string $slug;
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category", orphanRemoval=false)
@@ -57,7 +57,8 @@ class Category
         return $this->id;
     }
 
-    public function getName(): ?string
+
+    public function getName(): string
     {
         return $this->name;
     }
@@ -71,7 +72,7 @@ class Category
     }
 
 
-    public function setSlug(?string $slug): void
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }

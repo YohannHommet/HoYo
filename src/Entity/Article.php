@@ -30,40 +30,41 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=3, minMessage="Title should be at least 3 characters")
+     * @Assert\Length(min=3, minMessage="Should be at least 3 characters")
      */
-    private ?string $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private ?string $slug;
+    private string $slug;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\Length(min=10, minMessage="Description should be at least 10 characters")
+     * @Assert\Length(min=10, minMessage="Should be at least 10 characters")
      */
-    private ?string $description;
+    private string $description;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\File()
      */
-    private ?string $image;
+    private string $image;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $user;
+    private User $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Category $category;
+    private Category $category;
 
 
     public function getId(): ?int
@@ -72,11 +73,10 @@ class Article
     }
 
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
-
 
     public function setTitle(string $title): self
     {
@@ -87,26 +87,28 @@ class Article
 
 
     /**
-     * @param string|null $slug
+     * @param string $slug
      */
-    public function setSlug(?string $slug): void
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }
 
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function getDescription(): ?string
+
+    public function getDescription(): string
     {
         return $this->description;
     }
+
 
     public function setDescription(string $description): self
     {
@@ -115,10 +117,12 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+
+    public function getImage(): string
     {
         return $this->image;
     }
+
 
     public function setImage(string $image): self
     {
@@ -127,29 +131,32 @@ class Article
         return $this;
     }
 
+
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+
+    public function getCategory(): Category
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
         return $this;
     }
-
 
 }

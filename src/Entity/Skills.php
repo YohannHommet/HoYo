@@ -24,8 +24,7 @@ class Skills
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=3, minMessage="Name is too short")
+     * @Assert\Length(min=2, minMessage="Should be at least 2 characters")
      */
     private ?string $name;
 
@@ -33,7 +32,7 @@ class Skills
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private ?string $image;
+    private string $image;
 
 
     public function getId(): ?int
@@ -41,26 +40,23 @@ class Skills
         return $this->id;
     }
 
-
     public function getName(): ?string
     {
         return $this->name;
     }
 
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-
     public function getImage(): ?string
     {
         return $this->image;
     }
-
 
     public function setImage(string $image): self
     {
