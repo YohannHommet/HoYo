@@ -15,9 +15,6 @@ class AppFixtures extends Fixture
 {
 
     protected UserPasswordEncoderInterface $encoder;
-    /**
-     * @var \Symfony\Component\String\Slugger\SluggerInterface
-     */
     private SluggerInterface $slugger;
 
 
@@ -38,30 +35,44 @@ class AppFixtures extends Fixture
             ->setLastname('Hommet')
             ->setEmail('admin@gmail.com')
             ->setRoles(['ROLE_ADMIN'])
-            ->setPassword($this->encoder->encodePassword($admin, 'soleil'));
+            ->setPassword($this->encoder->encodePassword($admin, 'soleil'))
+        ;
         $manager->persist($admin);
 
-        $category = new Category;
-        for ($c = 0; $c < 6; $c++) {
-            $category
-                ->setName("Catégorie au hasard n°$c")
-                ->setSlug($category->getName());
+        for ($u = 0; $u < 10; $u++) {
+            $user = new User();
+            $user
+                ->setFirstname("UserFirstname$u")
+                ->setLastname("UserLastname$u")
+                ->setEmail("user$u@gmail.com")
+                ->setRoles(['ROLE_USER'])
+                ->setPassword($this->encoder->encodePassword($user, "soleil"))
+            ;
+            $manager->persist($user);
 
-            $manager->persist($category);
-
-            $article = new Article;
-            for ($i = 0; $i < 25; $i++) {
-                $article
-                    ->setTitle("Super article n$i")
-                    ->setDescription("Description du super article n$i")
-                    ->setImage("https://picsum.photos/500/500")
-                    ->setUser($admin)
-                    ->setSlug($this->slugger->slug($article->getTitle()));
-                $manager->persist($article);
+            for ($c = 0; $c < 6; $c++) {
+                $category = new Category;
+                $category
+                    ->setName("Catégorie au hasard n°$c")
+                    ->setSlug($category->getName());
+    
+                $manager->persist($category);
+    
+                for ($i = 0; $i < 25; $i++) {
+                    $article = new Article;
+                    $article
+                        ->setTitle("Super article n$i")
+                        ->setDescription("Description du super article n$i")
+                        ->setImage("https://picsum.photos/500/500")
+                        ->setUser($admin)
+                        ->setCategory($category)
+                        ->setSlug($this->slugger->slug($article->getTitle()));
+                    $manager->persist($article);
+                }
+    
             }
 
-        }
-
+        }   
 
         $manager->flush();
     }
