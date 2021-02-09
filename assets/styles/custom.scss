@@ -34,7 +34,9 @@ $light: #f8f9fa;
 $dark: #0F1343;
 $font-size-base: 1.1rem;
 
-$link-decoration: $danger;
+$link-decoration: $info;
+$dropdown-link-active-bg: #f8f9faee;
+
 
 * {
   font-family: 'Roboto Condensed', sans-serif;
@@ -48,10 +50,6 @@ $link-decoration: $danger;
 
 nav#navbar {
   box-shadow: 0 10px 10px -15px rgba(0,0,0,0.5);
-}
-
-nav#navbar ul a:hover {
-
 }
 
 nav#navbar li > a.nav-link:before{
@@ -89,6 +87,12 @@ section#formation {
 }
 
 /*** ARTICLES ***/
+a.likes {
+  color: $pink;
+   :hover {
+      cursor: pointer;
+   }
+}
 
 
 /** FOOTER ***/

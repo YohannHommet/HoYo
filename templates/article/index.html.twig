@@ -3,46 +3,61 @@
 
 {% block body %}
 
-    <div class="container mt-lg-5 mt-md-3">
-        <div class="row">
+	<div class="container-xl mt-lg-5 mt-md-3">
+		<div class="row">
 
-            <div class="col-md-6 col-sm-12 mx-auto text-center">
-                <div>
-                    {% include '_partials.html.twig/_divider.html.twig' with {
+			<div class="col-md-6 col-sm-12 mx-auto text-center">
+				<div>
+					{% include '_partials.html.twig/_divider.html.twig' with {
                         'color': 'primary',
                         'margin': '100',
                         'text': 'FakeBlog'
                     } %}
-                </div>
-                <div class="text-muted">
-                    Le <b class="text-primary">FakeBlog</b> made by me avec une sélection de bonnes infos presque pas
-                    Fakes ;)
-                </div>
-            </div>
+				</div>
+				<div class="text-muted">
+					Le
+					<b class="text-primary">FakeBlog</b>
+					made by me avec une sélection de bonnes infos presque pas Fakes ;)
+				</div>
+			</div>
 
-            {% for a in articles %}
-                <div class="col-xl-3 col-md-4 col-sm-6 col-xs-10 g-3">
-                    <article class="card shadow-sm d-flex h-100">
-                        <img src="uploads/{{ a.image }}" class="card-img-top img-fluid" alt="{{ a.title }}">
-                        <div class="card-body p-3">
-                            <h4 class="card-title">
-                                {{ a.title }}
-                            </h4>
-                            <p class="card-text">
-                                {{ a.description | raw }}
-                            </p>
-                        </div>
-                        <div class="card-footer bg-white d-inline-flex justify-content-between align-items-center">
-                            <small class="text-muted">{{ a.createdAt | date('d-m-Y') }}</small>
-                            <span><a href="{{ path('app_blog_show', {'slug': a.slug}) }}"
-                                     class="btn btn-sm btn-outline-primary">More...</a></span>
-                        </div>
-                    </article>
-                </div>
-            {% endfor %}
+			{% for a in articles %}
+				<div class="col-xl-3 col-md-4 col-sm-6 col-xs-10 gx-3 gy-5">
+					<article class="card shadow-sm d-flex h-100">
+						{# <img src="uploads/{{ a.image }}" class="card-img-top img-fluid" alt="{{ a.title }}"> #}
+						<div class="d-flex justify-content-between align-items-center ps-3 pt-2 pe-3 pb-0">
+							<a href="" class="">
+								<small class="text-muted">{{ a.category.name }}</small>
+							</a>
+							<a class="likes">
+								<span>
+									<i class="fas fa-heart"></i>
+								</span>
+								<span class="">4</span>
+							</a>
+						</div>
 
-        </div>
+						<div class="card-body p-3">
+							<h4 class="card-title">
+								{{ a.title }}
+							</h4>
+							<p class="card-text" style="font-size: 1rem;">
+								{{ a.description | raw | u.truncate(90, '...', false) }}
+							</p>
+						</div>
+						<div class="card-footer bg-white d-inline-flex justify-content-between align-items-center">
+							<small class="text-muted">{{ a.user.firstname}}, le
+								{{ a.createdAt | date('d-m-Y') }}</small>
+							<span>
+								<a href="{{ path('app_blog_show', {'slug': a.slug}) }}" class="btn btn-sm btn-outline-primary">More...</a>
+							</span>
+						</div>
+					</article>
+				</div>
+			{% endfor %}
 
-    </div>
+		</div>
+
+	</div>
 
 {% endblock %}

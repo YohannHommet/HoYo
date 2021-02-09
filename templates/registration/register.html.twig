@@ -11,22 +11,24 @@
     </div>
 
 
-{% include '_partials.html.twig/_divider.html.twig' with {
-    'color': 'info',
-    'margin': '100',
-    'text': 'Register'
-} %}
+
 
 <div class="row">
-    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10 5 mx-auto">
+    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10 mx-auto">
 
-        <div class="card shadow p-3 rounded border-info">
+        <div class="card shadow p-3 rounded border-info my-md-5 my-sm-3">
+
+            {% include '_partials.html.twig/_divider.html.twig' with {
+                'color': 'info',
+                'margin': '75',
+                'text': 'Register'
+            } %}
 
             {{ form_start(registrationForm) }}
             {% form_theme registrationForm '_partials.html.twig/_my_form_theme.html.twig' %}
 
 
-            <div class="form-group mb-3 mt-4">
+            <div class="form-group mb-3 mt-3">
                 <label for="inputFirstname">
                     <span class="text-danger me-2 fs-4">&middot;</span>
                     Firstname
@@ -85,8 +87,8 @@
 
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('register') }}">
-            <div class="d-grid mt-5">
-                <button type="submit" class="btn btn-danger">Register Me !</button>
+            <div class="d-grid mt-5 mb-3">
+                <button type="submit" class="btn btn-info">Register Me !</button>
             </div>
 
             {{ form_end(registrationForm) }}
