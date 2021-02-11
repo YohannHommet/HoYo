@@ -2,6 +2,9 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<meta name="description" content="Portfolio de Yohann Hommet, dDéveloppeur Junior Backend PHP / Symfony.">
 		<title>{% block title 'Portfolio de Yohann Hommet' %}</title>
 
@@ -10,6 +13,10 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	
 	</head>
 	<body class="position-relative" style="min-height: 100vh">
 
@@ -21,14 +28,9 @@
 			{% block body %}{% endblock %}
 		</main>
 
-			{% block footer %}
-				{{ include('_partials.html.twig/_footer.html.twig') }}
-			{% endblock %}
+		{% block footer %}
+			{{ include('_partials.html.twig/_footer.html.twig') }}
+		{% endblock %}
 
-			{% block javascripts %}
-				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-				{{ encore_entry_script_tags('app') }}
-			{% endblock %}
-
-		</body>
-	</html>
+	</body>
+</html>
