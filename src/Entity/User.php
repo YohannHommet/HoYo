@@ -4,13 +4,9 @@ namespace App\Entity;
 
 
 use App\Entity\Traits\Timestampable;
-use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -133,6 +129,13 @@ class User implements UserInterface
         return $this;
     }
 
+
+    public function getFullname(): string
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
+
     /**
      * A visual identifier that represents this user.
      *
@@ -140,7 +143,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
