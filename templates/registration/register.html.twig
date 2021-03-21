@@ -10,95 +10,90 @@
         {% endfor %}
     </div>
 
+    <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10 mx-auto">
+
+            <div class="card shadow p-3 rounded border-info my-md-5 my-sm-3">
+
+                {% include '_partials.html.twig/_divider.html.twig' with {
+                    'color': 'info',
+                    'margin': '75',
+                    'text': 'Register'
+                } %}
+
+                {{ form_start(registrationForm) }}
+                {% form_theme registrationForm '_partials.html.twig/_my_form_theme.html.twig' %}
 
 
-
-<div class="row">
-    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-10 mx-auto">
-
-        <div class="card shadow p-3 rounded border-info my-md-5 my-sm-3">
-
-            {% include '_partials.html.twig/_divider.html.twig' with {
-                'color': 'info',
-                'margin': '75',
-                'text': 'Register'
-            } %}
-
-            {{ form_start(registrationForm) }}
-            {% form_theme registrationForm '_partials.html.twig/_my_form_theme.html.twig' %}
-
-
-            <div class="form-group mb-3 mt-3">
-                <label for="inputFirstname">
-                    <span class="text-danger me-2 fs-4">&middot;</span>
-                    Firstname
-                </label>
-                {{ form_widget(registrationForm.firstname) }}
-                <div class="form-error">
-                    <small>{{ form_errors(registrationForm.firstname) }}</small>
+                <div class="form-group mb-3 mt-3">
+                    <label for="inputFirstname">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Firstname
+                    </label>
+                    {{ form_widget(registrationForm.firstname) }}
+                    <div class="form-error">
+                        <small>{{ form_errors(registrationForm.firstname) }}</small>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group mb-3">
-                <label for="inputLastname">
-                    <span class="text-danger me-2 fs-4">&middot;</span>
-                    Lastname
-                </label>
-                {{ form_widget(registrationForm.lastname) }}
-                <div class="form-error">
-                    <small>{{ form_errors(registrationForm.lastname) }}</small>
+                <div class="form-group mb-3">
+                    <label for="inputLastname">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Lastname
+                    </label>
+                    {{ form_widget(registrationForm.lastname) }}
+                    <div class="form-error">
+                        <small>{{ form_errors(registrationForm.lastname) }}</small>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group mb-3">
-                <label for="inputEmail">
-                    <span class="text-danger me-2 fs-4">&middot;</span>
-                    Email
-                </label>
-                {{ form_widget(registrationForm.email) }}
-                <div class="form-error">
-                    <small>{{ form_errors(registrationForm.email) }}</small>
+                <div class="form-group mb-3">
+                    <label for="inputEmail">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Email
+                    </label>
+                    {{ form_widget(registrationForm.email) }}
+                    <div class="form-error">
+                        <small>{{ form_errors(registrationForm.email) }}</small>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group mb-3">
-                <label for="inputPasswordFirst">
-                    <span class="text-danger me-2 fs-4">&middot;</span>
-                    Password
-                </label>
-                {{ form_widget(registrationForm.password.first) }}
-                <div class="form-error">
-                    <small>{{ form_errors(registrationForm.password.first) }}</small>
+                <div class="form-group mb-3">
+                    <label for="inputPasswordFirst">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Password
+                    </label>
+                    {{ form_widget(registrationForm.password.first) }}
+                    <div class="form-error">
+                        <small>{{ form_errors(registrationForm.password.first) }}</small>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group mb-3">
-                <label for="inputPasswordSecond">
-                    <span class="text-danger me-2 fs-4">&middot;</span>
-                    Confirm Password
-                </label>
-                {{ form_widget(registrationForm.password.second) }}
-                <div class="form-error">
-                    <small>{{ form_errors(registrationForm.password.second) }}</small>
+                <div class="form-group mb-3">
+                    <label for="inputPasswordSecond">
+                        <span class="text-danger me-2 fs-4">&middot;</span>
+                        Confirm Password
+                    </label>
+                    {{ form_widget(registrationForm.password.second) }}
+                    <div class="form-error">
+                        <small>{{ form_errors(registrationForm.password.second) }}</small>
+                    </div>
                 </div>
+
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('register') }}">
+                <div class="d-grid mt-5 mb-3">
+                    <button type="submit" class="btn btn-info">Register Me !</button>
+                </div>
+
+                {{ form_end(registrationForm) }}
+
             </div>
-
-            {{ form_row(registrationForm.agreeTerms) }}
-
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('register') }}">
-            <div class="d-grid mt-5 mb-3">
-                <button type="submit" class="btn btn-info">Register Me !</button>
-            </div>
-
-            {{ form_end(registrationForm) }}
 
         </div>
-
-
-
     </div>
-</div>
 
 
 {% endblock %}

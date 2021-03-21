@@ -4,12 +4,13 @@ namespace App\Controller;
 
 
 use App\Form\PasswordResetFormType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 /**
@@ -21,6 +22,7 @@ class PasswordResetController extends AbstractController
 
     /**
      * @Route("/password-reset", name="app_password_reset", methods={"GET|POST"})
+     * 
      * @param \Symfony\Component\HttpFoundation\Request                             $request
      * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder
      * @param \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface            $tokenManager
@@ -32,8 +34,7 @@ class PasswordResetController extends AbstractController
         $user = $this->getUser();
 
         if (!$user->isVerified()) {
-            $this->addFlash('danger', 'Please verify your account first');
-            return $this->redirectToRoute('app_profile');
+            throw $this->createAccessDeniedException('Please verify your email first.');
         }
 
         $form = $this->createForm(PasswordResetFormType::class, $user);

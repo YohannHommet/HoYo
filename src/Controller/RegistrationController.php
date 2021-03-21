@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use function Symfony\Component\Translation\t;
 
 
 class RegistrationController extends AbstractController
@@ -40,8 +41,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $encoder, CsrfTokenManagerInterface $tokenManager): Response
     {
         if ($this->getUser()) {
-            $this->addFlash('warning', 'Cannot register, please log out first');
-            return $this->redirectToRoute('app_home');
+            throw $this->createAccessDeniedException('Please log out first.');
         }
 
         $user = new User();
@@ -53,7 +53,8 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid() && $tokenManager->isTokenValid($token)) {
             // encode the password
-            $user->setPassword($encoder->encodePassword($user, $form['password']->getData()));
+            $user->setPassword($encoder->encodePassword($user, $form['Password']->getData()));
+            dd($form['Password']['first']->getData());
 
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
